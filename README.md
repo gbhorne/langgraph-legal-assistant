@@ -71,17 +71,18 @@ python tests\test_review_graph.py
 ## Project structure
 ```
 langgraph-legal-assistant/
-+-- agents/
-|   +-- review_graph.py    # LangGraph StateGraph ReviewAgent
-|   +-- rag.py             # Vertex AI Search query helper (shared)
-|   +-- schemas.py         # Pydantic output types (shared)
-+-- dlp/
-|   +-- tokenizer.py       # Cloud DLP PII tokenization with local regex fallback (shared)
-+-- tests/
-|   +-- test_review_graph.py
-+-- config.py
-+-- requirements.txt
+├── agents/
+│   ├── review_graph.py    # LangGraph StateGraph ReviewAgent
+│   ├── rag.py             # Vertex AI Search query helper (shared)
+│   └── schemas.py         # Pydantic output types (shared)
+├── dlp/
+│   └── tokenizer.py       # Cloud DLP PII tokenization with local regex fallback (shared)
+├── tests/
+│   └── test_review_graph.py
+└── requirements.txt
 ```
+
+> Infrastructure config and environment files are not included in this public repo. The architecture and design are fully documented in the primary repo's `docs/technical-qa.md`.
 
 ---
 
