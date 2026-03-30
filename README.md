@@ -35,20 +35,20 @@ Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia cou
 ## Project structure
 ```
 langgraph-legal-assistant/
-+-- agents/
-|   +-- review_graph.py    # LangGraph StateGraph ReviewAgent
-|   +-- rag.py             # Vertex AI Search query helper (shared)
-|   +-- schemas.py         # Pydantic output types (shared)
-+-- dlp/
-|   +-- tokenizer.py       # Local regex PII tokenization (shared)
-+-- docs/
-|   +-- diagrams/
-|   |   +-- review_agent_diagram.svg  # Pipeline and ReviewState diagram
-|   +-- screenshots/
-+-- tests/
-|   +-- test_review_graph.py
-+-- config.py
-+-- requirements.txt
+├── agents/
+│   ├── review_graph.py    # LangGraph StateGraph ReviewAgent
+│   ├── rag.py             # Vertex AI Search query helper (shared)
+│   └── schemas.py         # Pydantic output types (shared)
+├── dlp/
+│   └── tokenizer.py       # Local regex PII tokenization (shared)
+├── docs/
+│   ├── diagrams/
+│   │   └── review_agent_diagram.svg  # Pipeline and ReviewState diagram
+│   └── screenshots/
+├── tests/
+│   └── test_review_graph.py
+├── config.py
+└── requirements.txt
 ```
 
 ---
