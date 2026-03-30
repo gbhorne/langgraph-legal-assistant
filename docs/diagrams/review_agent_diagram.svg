@@ -1,0 +1,91 @@
+<svg width="680" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif, system-ui, sans-serif">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- Section label: pipeline -->
+<text x="40" y="30" font-size="12" fill="#888780" font-weight="500">pipeline</text>
+
+<!-- tokenize -->
+<rect x="40" y="44" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="105" y="68" font-size="14" font-weight="500" fill="#085041" text-anchor="middle" dominant-baseline="central">tokenize</text>
+<text x="105" y="86" font-size="12" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">local regex PII masking</text>
+
+<!-- extract_clauses -->
+<rect x="210" y="44" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="280" y="68" font-size="14" font-weight="500" fill="#26215C" text-anchor="middle" dominant-baseline="central">extract_clauses</text>
+<text x="280" y="86" font-size="12" fill="#534AB7" text-anchor="middle" dominant-baseline="central">Gemini → JSON array</text>
+
+<!-- rate_clauses -->
+<rect x="380" y="44" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="445" y="68" font-size="14" font-weight="500" fill="#26215C" text-anchor="middle" dominant-baseline="central">rate_clauses</text>
+<text x="445" y="86" font-size="12" fill="#534AB7" text-anchor="middle" dominant-baseline="central">RAG + Gemini risk rating</text>
+
+<!-- compile_report -->
+<rect x="540" y="44" width="100" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="590" y="68" font-size="14" font-weight="500" fill="#085041" text-anchor="middle" dominant-baseline="central">compile</text>
+<text x="590" y="86" font-size="12" fill="#0F6E56" text-anchor="middle" dominant-baseline="central">Pydantic report</text>
+
+<!-- END -->
+<rect x="566" y="116" width="48" height="28" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="590" y="130" font-size="12" fill="#444441" text-anchor="middle" dominant-baseline="central">END</text>
+
+<!-- Arrows pipeline -->
+<line x1="170" y1="72" x2="208" y2="72" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="72" x2="378" y2="72" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="510" y1="72" x2="538" y2="72" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="590" y1="100" x2="590" y2="114" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Divider -->
+<line x1="40" y1="168" x2="640" y2="168" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<!-- Section label: ReviewState -->
+<text x="40" y="192" font-size="12" fill="#888780" font-weight="500">ReviewState (TypedDict)</text>
+
+<!-- Left column: input + tokenize fields -->
+<rect x="40" y="208" width="280" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="222" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">contract_text</text>
+<text x="56" y="238" font-size="12" fill="#5F5E5A" dominant-baseline="central">str — raw contract input</text>
+
+<rect x="40" y="252" width="280" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="266" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">jurisdiction</text>
+<text x="56" y="282" font-size="12" fill="#5F5E5A" dominant-baseline="central">str — e.g. "Georgia"</text>
+
+<rect x="40" y="296" width="280" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="310" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">contract_name</text>
+<text x="56" y="326" font-size="12" fill="#5F5E5A" dominant-baseline="central">str — document identifier</text>
+
+<rect x="40" y="340" width="280" height="36" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="56" y="354" font-size="14" font-weight="500" fill="#085041" dominant-baseline="central">clean_text</text>
+<text x="56" y="370" font-size="12" fill="#0F6E56" dominant-baseline="central">str — after PII tokenization</text>
+
+<rect x="40" y="384" width="280" height="36" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="56" y="398" font-size="14" font-weight="500" fill="#085041" dominant-baseline="central">dlp_context</text>
+<text x="56" y="414" font-size="12" fill="#0F6E56" dominant-baseline="central">dict — token-to-original map</text>
+
+<!-- Right column: extract/rate/compile fields -->
+<rect x="360" y="208" width="280" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="376" y="222" font-size="14" font-weight="500" fill="#26215C" dominant-baseline="central">raw_clauses</text>
+<text x="376" y="238" font-size="12" fill="#534AB7" dominant-baseline="central">list — extracted by LLM</text>
+
+<rect x="360" y="252" width="280" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="376" y="266" font-size="14" font-weight="500" fill="#26215C" dominant-baseline="central">analyzed</text>
+<text x="376" y="282" font-size="12" fill="#534AB7" dominant-baseline="central">list[ClauseAnalysis] — reducer: add</text>
+
+<rect x="360" y="296" width="280" height="36" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="376" y="310" font-size="14" font-weight="500" fill="#085041" dominant-baseline="central">report</text>
+<text x="376" y="326" font-size="12" fill="#0F6E56" dominant-baseline="central">dict — final ContractRiskReport</text>
+
+<!-- Legend -->
+<line x1="40" y1="448" x2="640" y2="448" stroke="#D3D1C7" stroke-width="0.5"/>
+<text x="40" y="472" font-size="12" fill="#888780">set by</text>
+<rect x="80" y="462" width="10" height="10" rx="2" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="96" y="472" font-size="12" fill="#5F5E5A">input</text>
+<rect x="148" y="462" width="10" height="10" rx="2" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="164" y="472" font-size="12" fill="#5F5E5A">tokenize / compile_report</text>
+<rect x="348" y="462" width="10" height="10" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="364" y="472" font-size="12" fill="#5F5E5A">extract_clauses / rate_clauses</text>
+
+</svg>

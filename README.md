@@ -1,4 +1,4 @@
-﻿# langgraph-legal-assistant
+# langgraph-legal-assistant
 
 LangGraph companion to [adk-legal-assistant](https://github.com/gbhorne/legal-adk-gcp). The same contract ReviewAgent implemented as a LangGraph StateGraph for framework comparison.
 
@@ -9,9 +9,8 @@ LangGraph companion to [adk-legal-assistant](https://github.com/gbhorne/legal-ad
 ## What this repo demonstrates
 
 The ReviewAgent from adk-legal-assistant rebuilt as an explicit LangGraph StateGraph with four nodes:
-```
-tokenize --> extract_clauses --> rate_clauses --> compile_report --> END
-```
+
+![ReviewAgent pipeline and state diagram](docs/diagrams/review_agent_diagram.svg)
 
 Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia court opinions), same local PII tokenization. Different framework.
 
@@ -33,24 +32,24 @@ Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia cou
 
 ---
 
-## Graph structure
+## Project structure
 ```
-ReviewState (TypedDict)
-  contract_text   str        # raw input
-  jurisdiction    str        # e.g. "Georgia"
-  contract_name   str
-  clean_text      str        # after PII tokenization
-  dlp_context     dict       # token-to-original mapping
-  raw_clauses     list       # extracted by LLM
-  analyzed        list       # ClauseAnalysis objects (reducer: operator.add)
-  report          dict       # final ContractRiskReport
+langgraph-legal-assistant/
++-- agents/
+|   +-- review_graph.py    # LangGraph StateGraph ReviewAgent
+|   +-- rag.py             # Vertex AI Search query helper (shared)
+|   +-- schemas.py         # Pydantic output types (shared)
++-- dlp/
+|   +-- tokenizer.py       # Local regex PII tokenization (shared)
++-- docs/
+|   +-- diagrams/
+|   |   +-- review_agent_diagram.svg  # Pipeline and ReviewState diagram
+|   +-- screenshots/
++-- tests/
+|   +-- test_review_graph.py
++-- config.py
++-- requirements.txt
 ```
-
-Nodes:
-- **tokenize:** local regex layer replaces PII with reversible tokens
-- **extract_clauses:** Gemini extracts clause_type + clause_text as JSON array
-- **rate_clauses:** per-clause RAG lookup + Gemini risk rating
-- **compile_report:** assembles ContractRiskReport Pydantic object
 
 ---
 
@@ -64,23 +63,6 @@ pip install -r requirements.txt
 copy .env.example .env
 # add your GOOGLE_API_KEY to .env
 python tests\test_review_graph.py
-```
-
----
-
-## Project structure
-```
-langgraph-legal-assistant/
-+-- agents/
-|   +-- review_graph.py    # LangGraph StateGraph ReviewAgent
-|   +-- rag.py             # Vertex AI Search query helper (shared)
-|   +-- schemas.py         # Pydantic output types (shared)
-+-- dlp/
-|   +-- tokenizer.py       # Local regex PII tokenization (shared)
-+-- tests/
-|   +-- test_review_graph.py
-+-- config.py
-+-- requirements.txt
 ```
 
 ---
