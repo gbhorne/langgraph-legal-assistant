@@ -13,7 +13,7 @@ The ReviewAgent from adk-legal-assistant rebuilt as an explicit LangGraph StateG
 tokenize --> extract_clauses --> rate_clauses --> compile_report --> END
 `
 
-Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia court opinions), same Cloud DLP tokenization. Different framework.
+Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia court opinions), same local PII tokenization. Different framework.
 
 ---
 
@@ -76,7 +76,7 @@ langgraph-legal-assistant/
 |   +-- rag.py             # Vertex AI Search query helper (shared)
 |   +-- schemas.py         # Pydantic output types (shared)
 +-- dlp/
-|   +-- tokenizer.py       # Cloud DLP PII tokenization (shared)
+|   +-- tokenizer.py       # Local regex PII tokenization (shared)
 +-- tests/
 |   +-- test_review_graph.py
 +-- config.py
