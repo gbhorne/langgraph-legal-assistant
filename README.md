@@ -31,6 +31,9 @@ Same inputs, same outputs, same RAG corpus (Vertex AI Search, 1,010+ Georgia cou
 
 **Key finding from this implementation:** LangGraph requires more explicit state management but makes every state transition visible and testable. For regulated environments where an auditor needs to see exactly what happened at each step, the explicit graph is a stronger compliance story. ADK ships faster for straightforward tool-calling pipelines.
 
+### LangSmith trace — successful run
+![LangSmith trace list showing green successful run](docs/screenshots/langgraph-01-trace-list-green-run.png)
+
 ---
 
 ## Graph structure
@@ -51,6 +54,12 @@ Nodes:
 - **extract_clauses:** Gemini extracts clause_type + clause_text as JSON array
 - **rate_clauses:** per-clause RAG lookup + Gemini risk rating
 - **compile_report:** assembles ContractRiskReport Pydantic object
+
+### Node execution waterfall
+![LangSmith waterfall timeline of node execution](docs/screenshots/langgraph-02-waterfall-timeline.png)
+
+### Node tree with token counts
+![LangSmith node tree showing per-node token counts](docs/screenshots/langgraph-03-node-tree-token-counts.png)
 
 ---
 
